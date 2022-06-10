@@ -11,7 +11,7 @@ $ModuleInformation = Import-Module $Module.FullName -Force -PassThru
 $RequiredModules = @('Pester') + $ModuleInformation.RequiredModules
 
 foreach ($m in $RequiredModules) {
-    if( ! (Get-Module -ListAvailable -Name $M) ){
+    if ( ! (Get-Module -ListAvailable -Name $M) ) {
         Write-Verbose "'$m' Not installed, downloading and installing $m from PSGallery."
         Install-Module -Name $m.ModuleName -Force -Repository PSGallery
         Write-Verbose "'$m' installed."

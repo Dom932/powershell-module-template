@@ -3,13 +3,15 @@ BeforeAll {
     $ps1Files = Get-ChildItem -Path "$($module.Directoryname)\Public\*.ps1"
     $moduleInformation = Get-Module -Name $module.BaseName
     # If test has been run directory then module will need to be imported
-    if(! $moduleInformation) {
+    if (! $moduleInformation) {
         $moduleInformation = $moduleInformation = Import-Module $module.FullName -Force -PassThru
     }
 }
 
 Describe "$($module.BaseName) Module - Testing Manifest File (.psd1)" {
+
     Context "Manifest" {
+        
         It "Module should contain RootModule" {
             $moduleInformation.RootModule | Should -Not -BeNullOrEmpty
         }

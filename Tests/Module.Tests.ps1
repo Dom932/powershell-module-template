@@ -1,3 +1,7 @@
+# PSScriptAnalyzer - Suppress Messages
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments", "", Justification="Test File")]
+param ()
+
 BeforeAll {
     $module = Get-ChildItem -Path (Split-Path -Path $PSScriptRoot -Parent) -Filter '*.psd1'
     $ps1Files = Get-ChildItem -Path "$($module.Directoryname)\Public\*.ps1"
@@ -11,7 +15,7 @@ BeforeAll {
 Describe "$($module.BaseName) Module - Testing Manifest File (.psd1)" {
 
     Context "Manifest" {
-        
+
         It "Module should contain RootModule" {
             $moduleInformation.RootModule | Should -Not -BeNullOrEmpty
         }
